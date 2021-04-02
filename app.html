@@ -15,12 +15,8 @@
     const shell = require('electron').shell
     const ipc = require('electron').ipcRenderer
 
-    function ytb() {
-        shell.openExternal("https://www.youtube.com/")
-    }
-
     function discord() {
-        shell.openExternal("https://discord.gg")
+        shell.openExternal("https://discord.gg/9EkTEDuFVn")
     }
 
     iziToast.success({
@@ -38,19 +34,17 @@
 
 </script>
 
+<h1>Bienvenue sur Erina Faction !</h1>
+
 <div class="content">
     <div class="social">
-        <div onclick="ytb()" id="ytb">
-            <br>
-            <img src="./assets/img/youtube.png"><p>Exemple</p>
-        </div>
         <div onclick="discord()" id="discord">
             <br>
-            <img style="width: 64px;" src="./assets/img/discord.png"><p>Exemple</p>
+            <img style="width: 64px;" src="./assets/img/discord.png"><p>Rejoignez notre discord !</p>
         </div>
     </div>
     <button onclick="launch()" id="launch" class="launch">Lancez le jeux</button>
-    <p id="launchedmsg"></p>
+    <p id="launchedmsg" class="launchedmsg"></p>
 </div>
 
 </body>
