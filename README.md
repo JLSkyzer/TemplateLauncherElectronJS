@@ -9,7 +9,7 @@
 | Linux x64 | `name-VERSION-x86_64.AppImage` |
 
 ```console
-> git clone https://github.com/strykerzOfficiel/TemplateLauncherElectronJS.git erina_launcher
+> git clone "ton lien git" erina_launcher
 > cd erina_launcher
 > npm install
 ```
