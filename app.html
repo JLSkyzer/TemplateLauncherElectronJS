@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/iziToast.css">
+    <script src="./assets/js/iziToast.js"></script>
+</head>
+<body>
+
+<h1 id="welcome">Bienvenue sur Erina World !</h1>
+
+<div class="important">
+    <p style="color: rgb(231, 0, 0)" class="first">Le premier Lancement peut prendre jusqu'a 10 min !</p>
+
+    <p style="color: white;">Pour savoir si votre jeu se lance, aller sur le "Developer Tools" et aller dans la page "Console"</p>
+
+</div>
+
+
+
+<div class="content">
+    <div class="social">
+        <div onclick="discord()" id="discord">
+            <br>
+            <img style="width: 64px;" src="./assets/img/discord.png"><p>Rejoignez notre discord !</p>
+        </div>
+    </div>
+</div>
+
+<div class="btnlist">
+    <button onclick="launch()" id="launch" class="launch">Lancez le jeux</button>
+
+    <button onclick="settings()" id="settings" class="settings">Paramètres</button>
+
+    <button onclick="logout()" id="logout" class="logout">Déconnexion</button> 
+    
+</div>
+
+
+<script>
+    const shell = require('electron').shell
+    const ipc = require('electron').ipcRenderer
+    const path = require('path')
+    const fs = require('fs');
+
+    var welcome = document.getElementById('welcome')
+
+    function discord() {
+        shell.openExternal("https://discord.gg/9EkTEDuFVn")
+    }
+
+    iziToast.success({
+        title: 'Bienvenue !',
+        message: 'Vous vous êtes bien connecté !',
+    });
+
+    function settings() {
+        window.open(path.join(__dirname, "./settings.html"), "Paramètre");
+    }
+
+    function launch() {
+        var launch = document.getElementById('launch')
+        var logout = document.getElementById('logout')
+        var settings = document.getElementById('settings')
+        let ramChange = fs.readFileSync('./ram.json');
+        let ram = JSON.parse(ramChange);
+        
+        if(ram.settings.Min && ram.settings.Max){
+            ipc.send("settings", { min: ram.settings.Min, max: ram.settings.Max })
+            launch.disabled = true
+            logout.disabled = true
+            settings.disabled = true
+            setTimeout(() => {
+                ipc.send("launch")
+            }, 1000);
+            launch.innerHTML = "Jeu Lancé"
+            launch.style.backgroundColor = "rgb(94, 94, 94)"
+            launch.style.color = "white"
+            ipc.on("debug", (event, data) => {
+                console.log(data);
+            })
+            ipc.on("data", (event, data) => {
+                console.log(data);
+            })
+        } else {
+            launch.disabled = true
+            logout.disabled = true
+            settings.disabled = true
+            launch.innerHTML = "Jeu Lancé"
+            launch.style.backgroundColor = "rgb(94, 94, 94)"
+            launch.style.color = "white"
+            setTimeout(() => {
+                ipc.send("launch")
+            }, 1000);
+            ipc.on("debug", (event, data) => {
+                console.log(data);
+            })
+            ipc.on("data", (event, data) => {
+                console.log(data);
+            })
+        }
+
+        /*
+        ipc.send("launch")
+        launch.disabled = true
+        logout.disabled = true
+        settings.disabled = true
+        launch.innerHTML = "Jeu Lancé"
+        launch.style.backgroundColor = "rgb(94, 94, 94)"
+        launch.style.color = "black"
+        ipc.on("debug", (event, data) => {
+            console.log(data);
+        })
+        ipc.on("data", (event, data) => {
+            console.log(data);
+        })*/
+    }
+
+    function logout() {
+        window.location.href = path.join(__dirname, "./index.html")
+        localStorage.clear();
+    }
+
+</script>
+
+</body>
+</html>

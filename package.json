@@ -1,0 +1,44 @@
+{
+  "name": "launcher",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "asar": "^3.0.3",
+    "cryptr": "^6.0.2",
+    "electron-packager": "^15.2.0",
+    "minecraft-launcher-core": "^3.16.2"
+  },
+  "devDependencies": {
+    "electron": "^11.4.3",
+    "electron-builder": "^22.10.5",
+    "electronmon": "^1.1.2"
+  },
+  "scripts": {
+    "start": "electronmon .",
+    "electron": "electron .",
+    "electron-packager": "electron-packager .",
+    "buildW": "electron-builder build -w",
+    "buildM": "electron-builder build -m",
+    "buildL": "electron-builder build -l"
+  },
+  "author": "JLStrykerz_2_0",
+  "license": "MIT",
+  "build": {
+    "appId": "fr.pseudo.nomdutruc",
+    "productName": "ErinaWorld",
+    "win": {
+      "icon": "build/icons.png",
+      "target": {
+        "target": "portable",
+        "arch": [
+          "ia32"
+        ]
+      }
+    },
+    "portable": {
+      "requestExecutionLevel": "user",
+      "useZip": true
+    }
+  }
+}

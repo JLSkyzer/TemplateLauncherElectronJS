@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"name": "tuto dev",
+			"path": "..\\..\\site web\\tuto dev"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

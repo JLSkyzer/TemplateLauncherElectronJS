@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/iziToast.css">
+    <script src="assets/js/iziToast.js"></script>
+</head>
+<body>
+    
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="text">            
+            <br>
+            <h1 style="color: rgb(255, 255, 255);">Connectez-vous</h1>
+            <form>
+                <input type="email" id="username" placeholder="E-mail">
+                <br>
+                <br>
+                <input type="password" id="password" placeholder="Password">
+                <br>
+                <br>
+                <br>
+                <input type="button" id="loginbtn" value="Connexion"> 
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const ipc = require('electron').ipcRenderer
+        const fs = require('fs');
+
+        var loginbtn = document.getElementById('loginbtn')
+        var create = document.getElementById('create')
+
+        document.addEventListener("DOMContentLoaded", () =>{
+            let username = document.getElementById("username")
+            let password = document.getElementById("password")
+
+            fs.access('./account.json', (err) => {
+                if (!err) {
+                    let accountW = fs.readFileSync('./account.json');
+                    let account = JSON.parse(accountW);
+                    if (account.email) {
+                        username.value = account.email;
+                    }
+                    return;
+                } else if(err) {
+                    console.log(err);
+                }
+            })
+        })
+        
+        loginbtn.addEventListener("click",e => {
+            let username = document.getElementById("username").value
+            let password = document.getElementById("password").value
+
+            if (username && password) {
+                loginbtn.disabled = true
+                loginbtn.innerHTML = 'Connexion...'
+                ipc.send("login", { u: username, p: password })
+                //loginbtn.style.display = "none"
+            }
+        })
+
+        ipc.on("err", (event, data) => {
+            iziToast.error({
+                title: 'Erreur !',
+                message: 'Mauvais identifiants / Trop de requêtes !',
+            });
+            loginbtn.disabled = false
+        })
+        ipc.on("done", () => {
+            let accountW = {
+                email: username.value
+            }
+            let data = JSON.stringify(accountW);
+            fs.writeFileSync('./account(NePasMontrer).json', data);
+            iziToast.success({
+                title: 'Bienvenue !',
+                message: 'Vous vous êtes bien connecté !',
+            });
+        })
+</script>
+
+</body>
+</html>

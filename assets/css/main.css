@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+body {
+    background: url("../img/background.png");
+    text-align: center;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: sans-serif;
+    height: 100vh;
+    background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+    text-align: center;
+}
+
+.setting{
+    background: rgb(24, 23, 23);
+    text-align: center;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: sans-serif;
+    height: 100vh;
+    background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+    text-align: center;
+    color: white;
+}
+.important{
+    min-width: 500px;
+    width: 500px;
+    padding: 10px;
+    background-color: #1f1f1fa8;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reset{
+    height: 30px;
+    background-color: #700202;
+    color: white;
+    outline: none;
+    border: none;
+}
+.reset:hover{
+    transition: 0.5s;
+    background-color: #960e0e;
+}
+
+input {
+    border: none;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    background: transparent;
+    outline: none;
+    border-bottom: 2px solid rgb(0, 126, 52);
+}
+
+input:focus {
+    -webkit-transition: 1s;
+    transition: 1s;
+    border: none;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    background: transparent;
+    outline: none;
+    border-bottom: 2px solid rgb(133, 0, 0);
+}
+
+input[type="button"] {
+    border: none;
+    padding: 10px;
+    color: white;
+    background: transparent;
+    outline: none;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    border: none;
+    padding: 10px;
+    color: white;
+    background: transparent;
+    outline: none;
+    border: 2px solid white;
+    background-color: rgb(126, 126, 126);
+    cursor: pointer;
+    -webkit-transition: 1s;
+    transition: 1s;
+    border-radius: 5px;
+}
+
+.drag {
+    width: 100%;
+    height: 10px;
+    position: fixed;
+    -webkit-app-region: drag;
+    backdrop-filter: blur(64px);
+}
+
+.social {
+    background: linear-gradient(to bottom, rgba(143, 48, 48, 0.7), rgba(0, 104, 189, 0.7));
+    min-width: 277px;
+    width: 277px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 500px;
+    color: rgb(255, 255, 255);
+    margin-right: 20px;
+}
+.social p
+{
+    background-color: transparent;
+}
+
+.content {
+    min-width: 100%;
+    width: 100%px;
+    position: fixed;
+    bottom: 0;
+    height: 400px;
+    color: white;
+}
+
+.logout
+{
+    padding: 7px;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    font-weight: bolder;
+    background-color: rgb(189, 3, 3);
+    color: white;
+    height: 30px;
+    margin-left: 10px;
+    width: 110px;
+}
+
+.logout:hover
+{
+    background-color: rgb(85, 6, 6);
+    color: white;
+    transition: 0.3s;
+}
+
+.launch {
+    padding: 7px;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    font-weight: bolder;
+    background-color: #0b8001;
+    color: white;
+    height: 30px;
+    margin-left: 10px;
+    width: 110px;
+}
+.launchedmsg
+{
+    color: black;
+    background-color: rgb(95, 95, 95);
+}
+
+.launch:hover {
+    background-color: #063f01;
+    color: white;
+    transition: 0.3s;
+}
+
+.settings
+{
+    color: white;
+    background: rgb(212, 138, 0);
+    border: 3px solid rgb(121, 81, 7);
+    height: 30px;
+    width: 110px;
+    border-radius: 7px;
+    margin-left: 10px;
+}
+.settings:hover{
+    transition: 0.5s;
+    background: rgb(131, 86, 4);
+    border: 3px solid rgb(102, 68, 4);
+}
+.btnlist{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    top: 97%; 
+    left: 50%;
+    width: 400px;
+    transform: translate(-50%, -50%);
+}
+
+.save{
+    color: white;
+    background: rgb(212, 138, 0);
+    border: 3px solid rgb(121, 81, 7);
+    height: 30px;
+    width: 100px;
+    border-radius: 12px;
+    margin-top: 15px;
+    outline: none;
+}
+.save:hover{
+    transition: 0.5s;
+    background: rgb(131, 86, 4);
+    border: 3px solid rgb(102, 68, 4);
+}
+
+.ram {
+    border: none;
+    width: 400px;
+    height: 15px;
+    -webkit-appearance: none;
+    background: #2e2e2e;
+    outline: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.ram:focus {
+    border: none;
+    width: 400px;
+    height: 15px;
+    -webkit-appearance: none;
+    background: #2e2e2e;
+    outline: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.ram::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(184, 119, 0);
+    border-radius: 50px;
+    cursor: pointer;
+    border: 15px solid rgb(187, 127, 16);
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(255, 255, 255);
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(255, 255, 255);
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(255, 255, 255);
+}

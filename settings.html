@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
+        <link rel="stylesheet" href="assets/css/iziToast.css">
+        <script src="assets/js/iziToast.js"></script>
+    </head>
+    <body class="setting">
+    
+        <h1>Séléction de la ram</h1>
+
+        <div class="ramselect">
+            <span id="ram-min">RAM Minimum : 1G</span> <br>
+            <input class="ram" onchange="ram_min(this.value)" onmousemove="ram_min(this.value)" type="range" name="ramMin" id="ramMin" min="1" max="10" step="1" value="1">
+
+            <br>
+
+            <span id="ram-max">RAM Maximum : 2G</span> <br>
+            <input class="ram" onchange="ram_max(this.value)" onmousemove="ram_max(this.value)" type="range" name="ramMax" id="ramMax" min="1" max="10" step="1" value="2">
+        </div>
+        <br> <br>
+        <button onclick="saveRamSettings()" class="save">Sauvegardez</button>
+
+
+        <script>
+            const ipc = require('electron').ipcRenderer
+            const fs = require('fs');
+
+            function ram_min(value) {
+                document.getElementById('ram-min').innerHTML = "RAM Minimum : " + value + "G";
+            }
+
+            function ram_max(value) {
+                document.getElementById('ram-max').innerHTML = "RAM Maximum : " + value + "G";
+            }
+
+            function saveRamSettings () {
+                let RAM_Min = document.getElementById('ramMin').value + "000"
+                let RAM_Max = document.getElementById('ramMax').value + "000"
+                
+                let ramChange = {
+                    "settings": {
+                        Min: document.getElementById('ramMin').value + "000",
+                        Max: document.getElementById('ramMax').value + "000"
+                    } 
+                }
+                console.log(RAM_Max, "", RAM_Min);
+                if (RAM_Min > RAM_Max) {
+                    iziToast.error({
+                        title: 'Erreur',
+                        message: 'Veuillez choisir des valeur correcte'
+                    })
+                } else {
+                    let data = JSON.stringify(ramChange);
+                    fs.writeFileSync('./ram.json', data);
+                    // ipc.send("settings", { min: RAM_Min, max: RAM_Max })
+                    iziToast.success({
+                        title: 'Succès',
+                        message: 'Paremètre sauvegardez',
+                    });
+                }
+            }
+
+        </script>
+    </body>
+</html>
