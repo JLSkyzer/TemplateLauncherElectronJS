@@ -39,6 +39,9 @@ build/Release
 
 # Dependency directories
 node_modules/
+setup.cmd
+workspace.code-workspace
+publish.cmd
 jspm_packages/
 
 # TypeScript v1 declaration files
